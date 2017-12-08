@@ -11,5 +11,5 @@ RUN echo http://mirrors.aliyun.com/alpine/v3.6/main > /etc/apk/repositories; \
 RUN git clone ${SRC_URL} /var/www/laravel
 
 
-#容器已经实现
+#容器已经实现 需要改造
 #https://github.com/richarvey/nginx-php-fpm
