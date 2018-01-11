@@ -20,6 +20,7 @@ Route::namespace('Api')->group(function () {
     // 在 "App\Http\Controllers\Admin" 命名空间下的控制器
     Route::post('user/login', 'AuthController@login');
     Route::post('user/register', 'AuthController@create');
+    Route::post('app/feedback', 'AppMobileController@feedback');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
