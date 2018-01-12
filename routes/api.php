@@ -21,18 +21,13 @@ Route::namespace('Api')->group(function () {
     Route::post('user/login', 'AuthController@login');
     Route::post('user/register', 'AuthController@create');
     Route::post('app/feedback', 'AppMobileController@feedback');
-});
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Route::middleware('auth:api')->group(function () {
-    Route::get('/user', function (Request $request) {
-        // 使用 first 和 second 中间件
-        return $request->user();
-    });
 
-    Route::get('user/profile', function () {
-        // 使用 first 和 second 中间件
+
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('/user', function (Request $request) {
+            return $request->user();
+        });
+        Route::post('me/profile', 'MeController@update');
     });
 });

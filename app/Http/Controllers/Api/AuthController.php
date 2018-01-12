@@ -53,12 +53,17 @@ class AuthController extends ApiController
             ]
         );
         $data =  $request->all();
-        return User::create([
+        $user =  User::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'api_token' => str_random(60)
         ])->makeVisible('api_token');
+        if($user){
+            return $user;
+        }else{
+            return $this->renderRrror("注册失败");
+        }
 
 
 //        return User::create([
