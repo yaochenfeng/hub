@@ -21,6 +21,7 @@ Route::namespace('Api')->group(function () {
     Route::post('user/login', 'AuthController@login');
     Route::post('user/register', 'AuthController@create');
     Route::post('app/feedback', 'AppMobileController@feedback');
+    Route::get('me/avatar/{id}', 'MeController@getAvatar');
 
 
 
@@ -29,5 +30,8 @@ Route::namespace('Api')->group(function () {
             return $request->user();
         });
         Route::post('me/profile', 'MeController@update');
+
+        Route::post('me/avatar', 'MeController@updateAvatar');
+        Route::post('me/changepass', 'MeController@changePwd');
     });
 });
