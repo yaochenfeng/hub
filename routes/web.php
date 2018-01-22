@@ -14,8 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/gala/2018', function () {
+    return view('gala.2018');
+});
+Route::get('/gala/2018-2', function () {
+    return view('gala.2018-2');
+});
+Route::get('/gala/2018-3', function () {
+    return view('gala.2018-3');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('downloads/avatars/{id}', 'Api\MeController@getAvatar');
+
+
