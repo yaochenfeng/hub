@@ -2,34 +2,35 @@
 /**
  * Created by PhpStorm.
  * User: yaochenfeng
- * Date: 2018/1/11
- * Time: 上午9:36
+ * Date: 2018/1/24
+ * Time: 上午11:20
  */
 
 namespace App\Http\Controllers\Api;
-use App\Http\Controllers\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
+
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Exception;
+use Validator;
+use Illuminate\Http\Request;
 class ApiController extends BaseController
 {
-    use  ValidatesRequests;
-    public static function respondWithError($request, Exception $exception)
+    use AuthorizesRequests, DispatchesJobs;
+
+    /**
+     * Validate the given request with the given rules.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  array  $rules
+     * @param  array  $messages
+     * @param  array  $customAttributes
+     * @return array
+     */
+    public function validate(Request $request, array $rules,
+                             array $messages = [], array $customAttributes = [])
     {
+        $validator = Validator::make($request->all(), $rules, $messages, $customAttributes)->validate();
+        return $validator;
 
-        #错误 定制消息
-        return response()->json([
-//            'error'=>$exception,
-            'error_code' => $exception->getCode(),
-            'error_msg' => $exception->getMessage(),
-        ]);
     }
-    function renderRrror($msg ='错误' , $code = 202 ){
-        return response()->json([
-//            'error'=>$exception,
-            'error_code' => $code,
-            'error_msg' => $msg,
-        ]);
-    }
-
 }

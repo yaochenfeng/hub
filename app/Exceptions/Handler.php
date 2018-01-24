@@ -2,12 +2,13 @@
 
 namespace App\Exceptions;
 
-use App\Http\Controllers\Api\ApiController;
 use Exception;
+use App\Traits\RestErrorTrait;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
+    use RestErrorTrait;
     /**
      * A list of the exception types that are not reported.
      *
@@ -50,8 +51,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($request->is('api/*')) {
-            return ApiController::respondWithError($request,$exception);
-
+            return $this->restrender($request, $exception);
         }
         return parent::render($request, $exception);
     }
