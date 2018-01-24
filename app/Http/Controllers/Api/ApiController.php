@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Traits\RestErrorTrait;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -15,7 +16,7 @@ use Validator;
 use Illuminate\Http\Request;
 class ApiController extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs;
+    use AuthorizesRequests, DispatchesJobs,RestErrorTrait;
 
     /**
      * Validate the given request with the given rules.

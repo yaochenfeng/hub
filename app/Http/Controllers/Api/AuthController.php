@@ -25,7 +25,8 @@ class AuthController extends ApiController
             $user = User::where('username', $data['username'])->first()->makeVisible('api_token');
             return $user;
         }else{
-            return $this->renderRrror("账户信息错误");
+            return $this->resterror("账户信息错误");
+
         }
 
 
@@ -62,7 +63,7 @@ class AuthController extends ApiController
         if($user){
             return $user;
         }else{
-            return $this->renderRrror("注册失败");
+            return $this->resterror("注册失败");
         }
 
 
