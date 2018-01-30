@@ -43,14 +43,14 @@ trait RestErrorTrait
 
         return response()->json([
                 'error_msg' => $e->getMessage(),
-                'error_code' => Response::HTTP_BAD_REQUEST
+                'error_code' => Response::HTTP_INTERNAL_SERVER_ERROR
             ], Response::HTTP_BAD_REQUEST);
     }
 
-    public function resterror($msg = '参数有误', $code = HTTP_BAD_REQUEST ){
+    public function resterror($msg = "参数有误", $code = Response::HTTP_BAD_REQUEST ){
         return response()->json([
             'error_msg' => $msg,
-            'error_code' => Response::HTTP_BAD_REQUEST
-        ], Response::HTTP_BAD_REQUEST);
+            'error_code' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 }
