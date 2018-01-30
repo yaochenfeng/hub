@@ -88,14 +88,14 @@ class MeController extends ApiController
             //
 
             $file = $request->file('file');
-            $path = $file->store('avatars');
+            $path = $file->store('avatars',['disk'=>'public']);
             $data = ['avatar'=>$path];
             $user->fill($data);
             $user->save();
+            return $user;
         }
+        $this->resterror('上传图片不存在');
 
-
-        return $user;
     }
     public function getAvatar(Request $request,$id)
     {
